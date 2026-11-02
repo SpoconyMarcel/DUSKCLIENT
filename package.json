@@ -1,0 +1,25 @@
+{
+  "name": "dusk-client",
+  "version": "0.1.0",
+  "description": "Fast Minecraft launcher (Fabric + performance mods + tuned JVM)",
+  "main": "main.js",
+  "author": "you",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable --publish never"
+  },
+  "build": {
+    "appId": "com.dusk.client",
+    "productName": "Dusk",
+    "artifactName": "Dusk-${version}.exe",
+    "win": { "target": ["portable"] }
+  },
+  "dependencies": {
+    "minecraft-launcher-core": "^3.18.2",
+    "msmc": "^5.0.4"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  }
+}

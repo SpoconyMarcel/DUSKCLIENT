@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Dusk</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{--bg:#120b24;--bg2:#2a1450;--panel:#ffffff0f;--line:#ffffff1a;--text:#f4f0ff;--mute:#b3a9d0;--acc:#7c5cff;--acc2:#a78bfa}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{font-family:"Segoe UI Variable Display","Segoe UI",system-ui,sans-serif;color:var(--text);overflow:hidden;
+ background:linear-gradient(180deg,#0d0820 0%,#1a0e3a 40%,#3d1a5e 68%,#a8456b 88%,#f08a5d 100%);position:relative}
+.stars{position:absolute;inset:0 0 40%;background:
+ radial-gradient(1.5px 1.5px at 12% 18%,#fff9,#0000),radial-gradient(1px 1px at 28% 8%,#fff8,#0000),
+ radial-gradient(1.5px 1.5px at 47% 22%,#fff7,#0000),radial-gradient(1px 1px at 63% 10%,#fff9,#0000),
+ radial-gradient(1.5px 1.5px at 78% 28%,#fff8,#0000),radial-gradient(1px 1px at 91% 14%,#fff7,#0000),
+ radial-gradient(1px 1px at 6% 40%,#fff6,#0000),radial-gradient(1px 1px at 55% 4%,#fff7,#0000)}
+.sun{position:absolute;left:50%;bottom:8%;width:230px;height:230px;margin-left:-115px;border-radius:50%;
+ background:linear-gradient(#ffd98a,#ffb45e 55%,#ff8f5a);
+ -webkit-mask:linear-gradient(#000 0 62%,#0000 62% 66%,#000 66% 74%,#0000 74% 77%,#000 77% 84%,#0000 84% 86%,#000 86%);
+ mask:linear-gradient(#000 0 62%,#0000 62% 66%,#000 66% 74%,#0000 74% 77%,#000 77% 84%,#0000 84% 86%,#000 86%)}
+.hills{position:absolute;left:0;right:0;bottom:0;width:100%;height:30%}
+nav{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:20px 48px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:19px;letter-spacing:-.01em}
+.logo i{width:22px;height:22px;background:linear-gradient(135deg,var(--acc2),var(--acc));display:block;clip-path:polygon(0 100%,0 40%,25% 40%,25% 15%,50% 15%,50% 40%,100% 40%,100% 100%)}
+button{font:inherit;cursor:pointer;border:0;color:var(--text)}
+button:focus-visible,select:focus-visible{outline:2px solid var(--acc2);outline-offset:2px}
+.acct{background:var(--panel);border:1px solid var(--line);padding:8px 16px;border-radius:9px;font-size:14px}
+.acct:hover{background:#ffffff1c}
+main{position:relative;z-index:2;display:grid;grid-template-columns:1.2fr 1fr;gap:56px;padding:48px 48px 0;max-width:1180px;margin:0 auto;align-items:start}
+.chip{font-size:13px;color:var(--mute);margin-bottom:18px}
+h1{font-size:clamp(40px,5.2vw,62px);line-height:1.02;letter-spacing:-.035em;font-weight:700}
+h1 span{color:var(--acc2)}
+.lead{margin:22px 0 28px;color:#d6cdee;font-size:16.5px;line-height:1.65;max-width:480px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+select{font:inherit;font-size:14px;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px 12px}
+select option{background:#1a0e3a}
+.play{background:var(--acc);padding:14px 30px;border-radius:9px;font-weight:600;font-size:15px}
+.play:hover{background:#8d70ff}.play:disabled{opacity:.55;cursor:default}
+.track{height:5px;border-radius:5px;background:#ffffff1f;margin-top:22px;max-width:420px;overflow:hidden}
+#bar{height:100%;width:0;background:var(--acc);transition:width .25s}
+#status{margin-top:10px;font-size:13px;color:var(--mute);min-height:18px}
+.card{background:#1c1236cc;border:1px solid var(--line);border-radius:20px;padding:30px;backdrop-filter:blur(8px)}
+.card small{color:var(--mute);font-size:13px}
+.card h2{font-size:28px;letter-spacing:-.02em;margin:10px 0 6px}
+.card h2 b{color:var(--acc2)}
+.card p{color:var(--mute);font-size:14px;line-height:1.55}
+ul{list-style:none;padding:0;margin:22px 0 0}
+li{display:flex;justify-content:space-between;padding:11px 0;border-top:1px solid var(--line);font-size:14.5px}
+li em{font-style:normal;color:var(--mute);font-size:13px}
+.foot{margin-top:18px;font-size:12.5px;color:var(--mute);line-height:1.5}
+@media(max-width:900px){main{grid-template-columns:1fr}.card{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head>
+<body>
+<div class="stars"></div><div class="sun"></div>
+<svg class="hills" viewBox="0 0 1200 200" preserveAspectRatio="none">
+ <path fill="#4a2468" d="M0 200V120H80V100H160V130H260V90H340V110H460V70H540V100H640V120H740V80H820V105H930V85H1020V115H1120V95H1200V200Z"/>
+ <path fill="#1c0f33" d="M0 200V150H100V135H200V160H300V130H420V155H520V140H640V165H760V135H880V158H1000V138H1100V160H1200V200Z"/>
+</svg>
+<nav><div class="logo"><i></i>Dusk</div><button class="acct" id="login">Sign in with Microsoft</button></nav>
+<main>
+ <section>
+  <div class="chip">Minecraft: Java Edition with Fabric</div>
+  <h1>The game you know,<br><span>tuned for speed.</span></h1>
+  <p class="lead">Dusk installs Fabric and a set of performance mods, then starts Minecraft with memory and garbage-collection settings built for steady frame rates.</p>
+  <div class="row">
+   <select id="ver" aria-label="Minecraft version"><option>1.21.4</option><option>1.21.1</option><option>1.20.4</option><option>1.20.1</option><option>1.19.4</option></select>
+   <select id="ram" aria-label="Memory"><option value="2">2 GB</option><option value="4" selected>4 GB</option><option value="6">6 GB</option><option value="8">8 GB</option><option value="12">12 GB</option></select>
+   <button class="play" id="play">Play</button>
+  </div>
+  <div class="track"><div id="bar"></div></div>
+  <div id="status"></div>
+ </section>
+ <aside class="card">
+  <small>Included in every launch</small>
+  <h2>Faster rendering, <b>less stutter.</b></h2>
+  <p>Mods are matched to your chosen version and installed the first time you play it.</p>
+  <ul>
+   <li>Sodium <em>rendering</em></li><li>Lithium <em>game logic</em></li><li>FerriteCore <em>memory</em></li>
+   <li>ModernFix <em>load time</em></li><li>Entity Culling <em>entities</em></li><li>ImmediatelyFast <em>UI and text</em></li>
+  </ul>
+  <div class="foot">Frame rates depend on your hardware.</div>
+ </aside>
+</main>
+<script>
+const $=s=>document.querySelector(s), st=t=>$('#status').textContent=t;
+const clean=e=>(e.message||String(e)).replace(/^Error invoking remote method '\w+': (Error: )?/,'');
+let user=null;
+const setUser=n=>{user=n;$('#login').textContent=n||'Sign in with Microsoft'};
+api.onStatus(st);
+api.onProgress(p=>$('#bar').style.width=p+'%');
+api.onClosed(()=>{$('#play').disabled=false;$('#bar').style.width='0';st('Minecraft closed')});
+api.restore().then(setUser);
+$('#login').onclick=async()=>{try{st('Opening Microsoft sign-in...');setUser(await api.login());st('Signed in')}catch(e){st('Sign-in failed: '+clean(e))}};
+$('#play').onclick=async()=>{
+ if(!user)return $('#login').click();
+ $('#play').disabled=true;
+ try{await api.play({version:$('#ver').value,ram:+$('#ram').value})}
+ catch(e){st(clean(e));$('#play').disabled=false}
+};
+</script>
+</body></html>
